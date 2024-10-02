@@ -34,7 +34,7 @@
 
 ### 安裝步驟
 
-1. 從版本庫克隆專案：
+1. clone專案：
     ```bash
     git clone https://github.com/your-username/swimming-pool-management.git
     cd swimming-pool-management
