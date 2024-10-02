@@ -25,7 +25,7 @@
 
 ### 需求條件
 
-- Python 3.x
+- Python 3
 - Flask
 - MySQL
 - Pandas
