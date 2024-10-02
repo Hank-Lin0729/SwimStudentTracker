@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>匯入學生名單</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='import_students.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='word.css') }}">
+    <script src="{{ url_for('static', filename='import_students.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>匯入學生名單</h1>
+        <form action="/import_students" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".xlsx, .xls" required>
+            <input type="submit" value="匯入學生名單">
+        </form>
+
+        <form action="/delete_all_students" method="POST" onsubmit="return confirmDeleteAll();">
+            <button type="submit" class="delete-all-btn">刪除所有學生資料</button>
+        </form>
+<br>
+        <form action="{{ url_for('add_student') }}" method="POST">
+            <h2>新增學生</h2>
+            <input type="text" name="class" placeholder="班級" required>
+            <input type="text" name="student_id" placeholder="學號" required>
+            <input type="text" name="name" placeholder="姓名" required>
+            <input type="text" name="seat_number" placeholder="座號" required>
+            <button type="submit" class="add-btn">新增學生</button>
+        </form>
+<br>
+<div class="table-container">
+        {% if students %}
+        <table>
+            <thead>
+                <tr>
+                    <th>班級</th>
+                    <th>學號</th>
+                    <th>姓名</th>
+                    <th>座號</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <form action="{{ url_for('edit_student', student_id=student.student_id) }}" method="POST">
+                        <td><input type="text" name="class" value="{{ student.class }}"></td>
+                        <td>{{ student.student_id }}</td>
+                        <td><input type="text" name="name" value="{{ student.name }}"></td>
+                        <td><input type="text" name="seat_number" value="{{ student.seat_number }}"></td>
+                        <td>
+                            <button type="submit" class="save-btn">保存</button>
+                            <button formaction="{{ url_for('delete_student', student_id=student.student_id) }}" class="delete-btn" onclick="return confirmDelete();">刪除</button>
+                        </td>
+                    </form>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="no-data">目前資料庫中沒有學生名單。</p>
+        {% endif %}
+</div>
+
+
+        <button class="back-btn" onclick="window.location.href='{{ url_for('admin_dashboard') }}'">返回管理介面</button>
+    </div>
+</body>
+</html>

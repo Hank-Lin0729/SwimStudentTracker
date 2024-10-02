@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登入頁面</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+
+<body>
+    <div class="login-container">
+        <h1>游泳池管理系統登入</h1>
+        <form action="/login" method="POST">
+            <input type="text" class="input-field" placeholder="帳號" name="username" required><br>
+            <input type="password" class="input-field" placeholder="密碼" name="password" required><br><br>
+            <button type="submit" class="login-btn">登入</button>
+        </form>
+    </div>
+    <br><br>
+</body>
+
+</html>

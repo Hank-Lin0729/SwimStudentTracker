@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>匯入教師名單</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='import_teachers.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='word.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>匯入教師名單</h1>
+        <form action="/import_teachers" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".xlsx, .xls" required><br>
+            <input type="submit" value="匯入教師名單">
+        </form>
+<br>
+        <form action="/import_teachers" method="POST">
+            <h2>新增教師</h2>
+            <input type="text" name="teacher_id" placeholder="教師編號" required><br>
+            <input type="text" name="name" placeholder="教師姓名" required><br>
+            <input type="submit" name="add_teacher" value="新增教師">
+        </form>
+<br>
+<div class="table-container">
+        {% if teachers %}
+        <table>
+            <thead>
+                <tr>
+                    <th>教師編號</th>
+                    <th>姓名</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for teacher in teachers %}
+                <tr>
+                    <form action="{{ url_for('edit_teacher', teacher_id=teacher.teacher_id) }}" method="POST">
+                        <td>{{ teacher.teacher_id }}</td>
+                        <td><input type="text" name="name" value="{{ teacher.name }}"></td>
+                        <td>
+                            <button type="submit" class="edit-btn">保存</button>
+                        </td>
+                    </form>
+                    <td>
+                        <form action="/import_teachers" method="POST" onsubmit="return confirm('確定要刪除嗎？');">
+                            <input type="hidden" name="teacher_id" value="{{ teacher.teacher_id }}">
+                            <button type="submit" name="delete_teacher" class="delete-btn">刪除</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="no-data">目前資料庫中沒有教師名單。</p>
+        {% endif %}
+</div>
+
+
+        <button class="back-btn" onclick="window.location.href='{{ url_for('admin_dashboard') }}'">返回管理介面</button>
+    </div>
+</body>
+</html>

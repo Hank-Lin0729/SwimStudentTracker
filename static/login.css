@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'Iansui';
+    src: url('./Iansui-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1a1a1a;
+    font-family: 'Iansui', serif;
+    color: #fff;
+}
+
+.login-container {
+    background-color: #2c2c2c;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-field {
+    width: 95%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: #444;
+    color: #fff;
+    font-family: 'Iansui', serif;
+    font-size: 15px;
+}
+
+.input-field::placeholder {
+    color: #aaa;
+    font-family: 'Iansui', serif;
+    font-size: 15px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 22px;
+    font-family: 'Iansui', serif;
+}
+
+.login-btn:hover {
+    background-color: #45a049;
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.forgot-password a {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}

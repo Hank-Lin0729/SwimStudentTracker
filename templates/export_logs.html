@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理介面</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='export_logs.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='word.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>游泳池管理系統 - 管理介面</h1>
+        <form action="/export_logs" method="get">
+            <button type="submit">匯出游泳池進出紀錄</button>
+        </form>
+        <form action="/back_to_dashboard" method="get">
+            <button type="submit" class="btn-back">返回管理介面</button>
+        </form>
+    </div>
+    
+    <button class="back-btn" onclick="window.location.href='{{ url_for('admin_dashboard') }}'">返回管理介面</button>
+</body>
+</html>

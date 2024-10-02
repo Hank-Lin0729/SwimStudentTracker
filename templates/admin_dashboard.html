@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理介面</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='word.css') }}">
+</head>
+<body>
+
+    <div class="block">
+        <center>
+            <div class="welcome-message">
+                <h2>{{ session['name'] }}，您好！</h2>
+            </div>
+        </center>
+        <div class="container">
+            <h1>游泳池管理系統 - 管理介面</h1>
+            <form method="POST" action="{{ url_for('admin_dashboard') }}">
+                <div class="button-row">
+                    <button type="submit" name="import_students">匯入學生名單</button>
+                    <button type="submit" name="import_teachers">匯入教師名單</button>
+                </div>
+                <div class="button-row">
+                    <button type="submit" name="export_logs">匯出游泳池紀錄</button>
+                    <button type="submit" formmethod="POST" formaction="{{ url_for('delete_all_logs') }}" name="delete_all_logs" onclick="return confirm('你確定要刪除所有紀錄嗎？')">刪除所有進出紀錄</button>
+                </div>
+            </form>
+                             
+        </div>
+        <center>
+            <button class="logout-btn" onclick="window.location.href='/logout'">登出</button>
+        </center>
+    </div>
+</body>
+</html>
